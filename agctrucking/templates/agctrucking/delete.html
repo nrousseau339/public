@@ -1,0 +1,29 @@
+{% extends 'agctrucking/base.html' %}
+
+{% block title %}
+<title>Delete</title>
+{% endblock title %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <br><br>
+    <div class="alert alert-danger" role="alert">
+        Are you sure you want to delete "{{ order.sopnumbe }}"?
+        <br>
+        <br>
+        <p>
+            Note: if the order exists in GP it will be added when the main page is loaded.
+        </p>
+    </div>
+
+    <p>
+        <a href="{% url 'agctrucking:main' %}">Go back</a>
+    </p>
+
+    <p>
+        <input class="btn btn-danger" type="submit" value="Confirm">
+    </p>
+</form>
+{% endblock content %}

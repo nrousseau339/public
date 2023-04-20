@@ -1,0 +1,33 @@
+{% extends 'agctrucking/base.html' %}
+
+
+{% block title %}
+<title>Edit</title>
+{% endblock title %}
+
+{% block content %}
+<div class="panel-body">
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Update Order Information</h1>
+
+    <form action="" method="POST" onsubmit="return confirm(confirmDate());">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success">
+        <a href="{% url 'agctrucking:main' %}"><button type="button" class="btn btn-success">Cancel</button></a>
+        <script>
+            function confirmDate() {
+                const a = document.getElementById('id_projectedshipdate').value;
+                const b = "{{ gpstring }}";
+                const c = "{{ gpshipdate }}";
+                let abc = b + c + " and will be updated to " + a;
+                const a1 = document.getElementById('id_requesteddeliverydate').value;
+                const b1 = "{{ gpstring1 }}";
+                const c1 = "{{ gpreqdeldate }}"
+                abc += b1 + c1 + " and will be updated to " + a1;
+                return (abc)
+            }
+        </script>
+    </form>
+</div>
+{% endblock content %}

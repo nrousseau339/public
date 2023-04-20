@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}
+{% endblock %} 
+
+
+<!-- just needs a page.title tag to show page title-->
+
+
+{% block content %}
+
+
+
+    <div class="row_sponsor" >
+        
+        
+    
+        {% for sponsor in sponsorpages %} 
+            
+            {% with sponsor=sponsor.specific %}
+            
+            {% image sponsor.specific.main_image original as my_image %}
+
+            
+
+            <div class="{% if sponsor.level == 1 %}column_sponsor1 break{% elif sponsor.level == 2 %}column_sponsor2{% elif sponsor.level > 2 %}column_sponsor{% endif %}" onclick=location.href="{% if sponsor.website != None %}{{ sponsor.website }}"{% endif %}>
+                    <!-- column_sponsor -->
+                    <img src="{{my_image.url}}">
+                
+            </div>
+                
+            {% endwith %}
+
+
+        {% endfor %}
+
+        <div style="margin: auto;">
+            <a href="{{ page.sponsorlink }}">
+                
+                <div class="button">
+                   <h1>Become a Sponsor</h1>
+                </div>
+                </a>
+                </div>
+        
+</div>
+{% endblock %}
